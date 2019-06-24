@@ -1,6 +1,6 @@
 # Project_Grafis
 
-Topik         : Pesawat Terbang
+Topik         : Simulasi Transmisi
 
 Nama Kelompok : 
     
