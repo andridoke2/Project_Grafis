@@ -1,8 +1,8 @@
 # Project_Grafis
 
-Topik         : Simulasi Transmisi
+    Topik         : Simulasi Transmisi
 
-Nama Kelompok : 
+    Nama Kelompok : 
     
     1. Andri Aryanto Doke / 161111014
 

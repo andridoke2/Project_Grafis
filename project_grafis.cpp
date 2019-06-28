@@ -8,6 +8,7 @@
 #include <math.h>
 
 int oldMouseX, oldMouseY;
+float view_rotasi_x = 20.0f, view_rotasi_y = 30.0f;
 
 GLfloat sudut = 1;
 
@@ -415,6 +416,8 @@ void mouseMotion(int x, int y){
 	oldMouseY = getY;
 	silinderAngle += thetaX;
 	silinderAngle += thetaY;
+  view_rotasi_x += thetaX;
+  view_rotasi_y += thetaY;
 }
 
 void displayCapsul(){
@@ -450,11 +453,17 @@ void displayCapsul(){
   glutSwapBuffers();
 }
 
+float setSudut(float sudut){
+  return sudut * (22 / 7) / 180;
+}
+
 void displayTransmisi(){
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   // Reset the current matrix to the "identity"
   glLoadIdentity();
+
+  float newSudut = setSudut(sudut * 10);
 
   // Move the "drawing cursor" around
   gluLookAt(
@@ -463,51 +472,76 @@ void displayTransmisi(){
     vertikal.x, vertikal.y, vertikal.z
   );
 
-  // VENUS
-  glPushMatrix();
-  glTranslatef(0.0f, 5.0f, -15.0f);
-  glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
-  Transmisi();
-  glPopMatrix();
-
   // MATAHARI
   glPushMatrix();
-  glTranslatef(0.0f, 9.0f, -20.0f);
+  // glRotatef(-newSudut, 0, 0, -1);
+  glTranslatef(0.0f, 2.5f, -10.0f);
   glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
+  glRotatef(view_rotasi_x, 1, 0, 0);
+  glRotatef(view_rotasi_y, 0, 1, 0);
   Matahari();
+  glPopMatrix();
+
+  // VENUS
+  glPushMatrix();
+  // glRotatef(sudut, 0, 0, 1);
+  glTranslatef(0.0f, -0.9f, -20.0f);
+  glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
+  glRotatef(view_rotasi_x, 1, 0, 0);
+  glRotatef(view_rotasi_y, 0, 1, 0);
+  Transmisi();
   glPopMatrix();
 
   // BUMI
   glPushMatrix();
-  glTranslatef(0.0f, 2.0f, -10.0f);
+  // glRotatef(-sudut, 0, 0, 1);
+  glTranslatef(-1.0f, 5.0f, -15.0f);
   glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
+  glRotatef(view_rotasi_x, 1, 0, 0);
+  glRotatef(view_rotasi_y, 0, 1, 0);
   Bumi();
   glPopMatrix();
 
   // MARS
   glPushMatrix();
+  // glRotatef(newSudut, 0, 0, 1);
   glTranslatef(2.0f, 3.0f, -12.0f);
   glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
+  glRotatef(view_rotasi_x, 1, 0, 0);
+  glRotatef(view_rotasi_y, 0, 1, 0);
   Mars();
   glPopMatrix();
 
   // BULAN
   glPushMatrix();
+  // glRotatef(-newSudut, 0, 0, 1);
   glTranslatef(3.0f, 3.0f, -11.0f);
   glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
+  glRotatef(view_rotasi_x, 1, 0, 0);
+  glRotatef(view_rotasi_y, 0, 1, 0);
   Bulan();
   glPopMatrix();
 
   // PLUTO
   glPushMatrix();
+  // glRotatef(-newSudut, 0, 0, 1);
   glTranslatef(2.0f, -2.0f, -14.0f);
   glRotatef(silinderAngle, 0.0f, 0.0f, -1.0f);
+  glRotatef(view_rotasi_x, 1, 0, 0);
+  glRotatef(view_rotasi_y, 0, 1, 0);
   Pluto();
+  glPopMatrix();
+
+  // Bintang Kecil
+  glPushMatrix();
+  glTranslatef(1.0f, -1.0f, -14.0f);
+  BintangKecil();
+  glRotatef(silinderAngle, 0.0f, 0.0f, -1.0f);
   glPopMatrix();
 
   if (silinder){
     silinderAngle += 2.0f;
-    angle_depanBelakang += 0.7f;
+    angle_depanBelakang -= 0.7f;
     samping.vectorRotation(depanBelakang, angle_depanBelakang - angle_depanBelakang2);
     vertikal.vectorRotation(depanBelakang, angle_depanBelakang - angle_depanBelakang2);
     angle_depanBelakang2 = angle_depanBelakang;
@@ -517,12 +551,7 @@ void displayTransmisi(){
     keyFunction('J', 0, 0);
   }
 
-  // Bintang Kecil
-  glPushMatrix();
-  glTranslatef(1.0f, -1.0f, -14.0f);
-  BintangKecil();
-  glRotatef(silinderAngle, 0.0f, 0.0f, -1.0f);
-  glPopMatrix();
+  sudut++;
 
   glFlush();
   glutSwapBuffers();
@@ -536,7 +565,7 @@ void timer(int value){
 int main(int argc, char **argv){
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-  glutInitWindowSize(1000, 600);
+  glutInitWindowSize(2000, 700);
   glutInitWindowPosition(50, 50);
   glutCreateWindow("Project Grafis");
   // glutDisplayFunc(displayCapsul);
