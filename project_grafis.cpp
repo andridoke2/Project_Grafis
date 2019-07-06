@@ -104,9 +104,27 @@ void SetengahBola(){
 }
 
 void Transmisi(){
-  float amb[] = {0.34f, 0.34f, 0.34f, 0.0f};
-  float diff[] = {1.41f, 0.41f, 0.41f, 0.0f};
-  float spec[] = {0.11f, 0.11f, 0.11f, 0.0f};
+  float amb[] = {};
+  float diff[] = {};
+  float spec[] = {};
+  float shine = 50.0f;
+
+  // glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
+  // glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
+  // glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
+  glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
+
+  float BODY_RADIUS = 2.0f;
+  int SLICES = 50;
+  int STACKS = 50;
+  GLUquadric *q = gluNewQuadric();
+  gluSphere(q, BODY_RADIUS, SLICES, STACKS);
+}
+
+void Kotak(){
+  float amb[] = {0.34f, 1.34f, 0.34f, 1.0f};
+  float diff[] = {0.41f, 1.41f, 0.41f, 1.0f};
+  float spec[] = {0.11f, 1.11f, 0.11f, 1.0f};
   float shine = 50.0f;
 
   glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
@@ -114,11 +132,16 @@ void Transmisi(){
   glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
   glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
 
-  float BODY_RADIUS = 0.5f; // ukuran gambar atau besar gambar
+  float BODY_LENGTH = 2.0f;
+  float BODY_RADIUS = 1.0f;
   int SLICES = 50;
   int STACKS = 50;
-  GLUquadric *q = gluNewQuadric();
-  gluSphere(q, BODY_RADIUS, SLICES, STACKS);
+
+  GLUquadric *q= gluNewQuadric();
+  gluCylinder(q, BODY_RADIUS, BODY_RADIUS, BODY_LENGTH, SLICES, STACKS);
+  gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS);
+  glTranslatef(0.0f, 0.0f, BODY_LENGTH);
+  gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS);
 }
 
 void Matahari(){
@@ -132,7 +155,61 @@ void Matahari(){
   glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
   glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
 
-  float BODY_RADIUS = 1.0f; // ukuran gambar atau besar gambar
+  float BODY_RADIUS = 0.6f; // ukuran gambar atau besar gambar
+  int SLICES = 50;
+  int STACKS = 50;
+  GLUquadric *q = gluNewQuadric();
+  gluSphere(q, BODY_RADIUS, SLICES, STACKS);
+}
+
+void Merkurius(){
+  float amb[] = {0.40, 0.40, 0.40f, 0.0f};
+  float diff[] = {1.41f, 0.41f, 0.41f, 0.0f};
+  float spec[] = {0.0f, 0.0f, 0.0f, 0.0f};
+  float shine = 50.0f;
+
+  glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
+  glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
+
+  float BODY_RADIUS = 0.3f; // ukuran gambar atau besar gambar
+  int SLICES = 50;
+  int STACKS = 50;
+  GLUquadric *q = gluNewQuadric();
+  gluSphere(q, BODY_RADIUS, SLICES, STACKS);
+}
+
+void Venus(){
+  float amb[] = {0.34f, 0.34f, 0.34f, 0.0f};
+  float diff[] = {1.41f, 0.41f, 0.41f, 0.0f};
+  float spec[] = {0.11f, 0.11f, 0.11f, 0.0f};
+  float shine = 50.0f;
+
+  glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
+  glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
+
+  float BODY_RADIUS = 0.4f; // ukuran gambar atau besar gambar
+  int SLICES = 50;
+  int STACKS = 50;
+  GLUquadric *q = gluNewQuadric();
+  gluSphere(q, BODY_RADIUS, SLICES, STACKS);
+}
+
+void Bumi(){
+  float amb[] = {0.0f, 0.45f, 0.45f, 1.40f};
+  float diff[] = {0.30f, 0.30f, 0.30f, 0.45f};
+  float spec[] = {0.0f, 0.0f, 0.0f, 0.0f};
+  float shine = 50.0f;
+
+  glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
+  glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
+
+  float BODY_RADIUS = 0.5; // ukuran gambar atau besar gambar
   int SLICES = 50;
   int STACKS = 50;
   GLUquadric *q = gluNewQuadric();
@@ -157,7 +234,43 @@ void Mars(){
   gluSphere(q, BODY_RADIUS, SLICES, STACKS);
 }
 
-void Bumi(){
+void Yupiter(){
+  float amb[] = {0.45f, 0.34f, 0.34f, 0.40f};
+  float diff[] = {0.41f, 0.41f, 0.41f, 0.0f};
+  float spec[] = {0.11f, 0.11f, 0.11f, 0.0f};
+  float shine = 50.0f;
+
+  glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
+  glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
+
+  float BODY_RADIUS = 0.8; // ukuran gambar atau besar gambar
+  int SLICES = 50;
+  int STACKS = 50;
+  GLUquadric *q = gluNewQuadric();
+  gluSphere(q, BODY_RADIUS, SLICES, STACKS);
+}
+
+void Saturnus(){
+  float amb[] = {0.34f, 0.34f, 0.34f, 0.0f};
+  float diff[] = {0.41f, 1.41f, 1.41f, 1.0f};
+  float spec[] = {0.11f, 0.11f, 0.11f, 0.0f};
+  float shine = 50.0f;
+
+  glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
+  glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
+
+  float BODY_RADIUS = 0.6; // ukuran gambar atau besar gambar
+  int SLICES = 50;
+  int STACKS = 50;
+  GLUquadric *q = gluNewQuadric();
+  gluSphere(q, BODY_RADIUS, SLICES, STACKS);
+}
+
+void Uranus(){
   float amb[] = {0.34f, 0.34f, 0.34f, 0.0f};
   float diff[] = {0.41f, 1.41f, 1.41f, 1.0f};
   float spec[] = {0.11f, 0.11f, 0.11f, 0.0f};
@@ -169,6 +282,42 @@ void Bumi(){
   glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
 
   float BODY_RADIUS = 1.0; // ukuran gambar atau besar gambar
+  int SLICES = 50;
+  int STACKS = 50;
+  GLUquadric *q = gluNewQuadric();
+  gluSphere(q, BODY_RADIUS, SLICES, STACKS);
+}
+
+void Neptunus(){
+  float amb[] = {0.34f, 0.34f, 0.34f, 0.0f};
+  float diff[] = {0.41f, 1.41f, 1.41f, 1.0f};
+  float spec[] = {0.11f, 0.11f, 0.11f, 0.0f};
+  float shine = 50.0f;
+
+  glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
+  glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
+
+  float BODY_RADIUS = 1.0; // ukuran gambar atau besar gambar
+  int SLICES = 50;
+  int STACKS = 50;
+  GLUquadric *q = gluNewQuadric();
+  gluSphere(q, BODY_RADIUS, SLICES, STACKS);
+}
+
+void Pluto(){
+  float amb[] = {0.0f, 0.0f, 0.0f, 0.0f};
+  float diff[] = {0.57f, 0.80f, 0.24f, 0.0f};
+  float spec[] = {0.20f, 0.30f, 0.40f, 0.50f};
+  float shine = 50.0f;
+
+  glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
+  glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
+
+  float BODY_RADIUS = 0.3; // ukuran gambar atau besar gambar
   int SLICES = 50;
   int STACKS = 50;
   GLUquadric *q = gluNewQuadric();
@@ -187,24 +336,6 @@ void Bulan(){
   glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
 
   float BODY_RADIUS = 0.5; // ukuran gambar atau besar gambar
-  int SLICES = 50;
-  int STACKS = 50;
-  GLUquadric *q = gluNewQuadric();
-  gluSphere(q, BODY_RADIUS, SLICES, STACKS);
-}
-
-void Pluto(){
-  float amb[] = {0.0f, 0.0f, 0.0f, 0.0f};
-  float diff[] = {0.57f, 0.80f, 0.24f, 0.0f};
-  float spec[] = {0.20f, 0.30f, 0.40f, 0.50f};
-  float shine = 50.0f;
-
-  glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
-  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
-  glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
-  glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
-
-  float BODY_RADIUS = 0.7; // ukuran gambar atau besar gambar
   int SLICES = 50;
   int STACKS = 50;
   GLUquadric *q = gluNewQuadric();
@@ -457,6 +588,152 @@ float setSudut(float sudut){
   return sudut * (22 / 7) / 180;
 }
 
+void displayPlanet(){
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+  // Reset the current matrix to the "identity"
+  glLoadIdentity();
+
+  float newSudut = setSudut(sudut * 10);
+
+  // Move the "drawing cursor" around
+  gluLookAt(
+    Cx, Cy, Cz,
+    Lx, Ly, Lz,
+    vertikal.x, vertikal.y, vertikal.z
+  );
+
+  // Matahari
+  glPushMatrix();
+  // glRotatef(-sudut, 0, 0, -1);
+  glTranslatef(0.0f, 2.5f, -10.0f);
+  glRotatef(view_rotasi_x, 1, 0, 0);
+  glRotatef(view_rotasi_y, 0, 1, 0);
+  glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
+  Matahari();
+  glPopMatrix();
+
+  // Merkurius
+  glPushMatrix();
+  // glRotatef(-sudut, 0, 0, 1);
+  glTranslatef(-1.0f, 0.05f, -20.0f);
+  glRotatef(view_rotasi_x, 1, 0, 0);
+  glRotatef(view_rotasi_y, 0, 1, 0);
+  glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
+  Merkurius();
+  glPopMatrix();
+
+  // Venus
+  glPushMatrix();
+  // glRotatef(sudut, 0, 0, 1);
+  glTranslatef(1.0f, 0.02f, -15.0f);
+  glRotatef(view_rotasi_x, 1, 0, 0);
+  glRotatef(view_rotasi_y, 0, 1, 0);
+  glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
+  Venus();
+  glPopMatrix();
+
+  // Bumi
+  glPushMatrix();
+  // glRotatef(-sudut, 0, 0, 1);
+  glTranslatef(-1.0f, 0.20f, -11.0f);
+  glRotatef(view_rotasi_x, 1, 0, 0);
+  glRotatef(view_rotasi_y, 0, 1, 0);
+  glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
+  Bumi();
+  glPopMatrix();
+
+  // Mars
+  glPushMatrix();
+  // glRotatef(sudut, 0, 0, 1);
+  glTranslatef(3.0f, 3.0f, -11.0f);
+  glRotatef(view_rotasi_x, 1, 0, 0);
+  glRotatef(view_rotasi_y, 0, 1, 0);
+  glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
+  Mars();
+  glPopMatrix();
+
+  // Yupiter
+  glPushMatrix();
+  // glRotatef(-sudut, 0, 0, 1);
+  glTranslatef(-2.0f, 6.0f, -14.0f);
+  glRotatef(view_rotasi_x, 1, 0, 0);
+  glRotatef(view_rotasi_y, 0, 1, 0);
+  glRotatef(silinderAngle, 0.0f, 0.0f, -1.0f);
+  Yupiter();
+  glPopMatrix();
+
+  // Saturnus
+  glPushMatrix();
+  // glRotatef(-sudut, 0, 0, 1);
+  glTranslatef(-4.0f, -2.0f, -14.0f);
+  glRotatef(view_rotasi_x, 1, 0, 0);
+  glRotatef(view_rotasi_y, 0, 1, 0);
+  glRotatef(silinderAngle, 0.0f, 0.0f, -1.0f);
+  Saturnus();
+  glPopMatrix();
+
+  // Uranus
+  glPushMatrix();
+  // glRotatef(-sudut, 0, 0, 1);
+  glTranslatef(-6.0f, 2.0f, -14.0f);
+  glRotatef(view_rotasi_x, 1, 0, 0);
+  glRotatef(view_rotasi_y, 0, 1, 0);
+  glRotatef(silinderAngle, 0.0f, 0.0f, -1.0f);
+  Uranus();
+  glPopMatrix();
+
+  // Neptunus
+  glPushMatrix();
+  // glRotatef(-sudut, 0, 0, 1);
+  glTranslatef(7.0f, -2.0f, -13.0f);
+  glRotatef(view_rotasi_x, 1, 0, 0);
+  glRotatef(view_rotasi_y, 0, 1, 0);
+  glRotatef(silinderAngle, 0.0f, 0.0f, -1.0f);
+  Neptunus();
+  glPopMatrix();
+
+  // Pluto
+  glPushMatrix();
+  // glRotatef(-sudut, 0, 0, 1);
+  glTranslatef(-8.0f, -2.0f, -12.0f);
+  glRotatef(view_rotasi_x, 1, 0, 0);
+  glRotatef(view_rotasi_y, 0, 1, 0);
+  glRotatef(silinderAngle, 0.0f, 0.0f, -1.0f);
+  Pluto();
+  glPopMatrix();
+
+  // // Bintang Kecil
+  // for(int a = 0; a < 100; a++){
+  //   glPushMatrix();
+  // }
+  // for (int x = -3; x <= 3; x += 6) {
+	// 	for (int z = -20; z >= -25; z -= 4) {
+	// 		glTranslatef(x, -2, z);
+	// 		glRotatef(90, 1, 0, 0);
+  //     BintangKecil();
+	// 		glPopMatrix();
+	// 	}
+	// }
+
+  if (silinder){
+    silinderAngle += 2.0f;
+    angle_depanBelakang -= 0.7f;
+    samping.vectorRotation(depanBelakang, angle_depanBelakang - angle_depanBelakang2);
+    vertikal.vectorRotation(depanBelakang, angle_depanBelakang - angle_depanBelakang2);
+    angle_depanBelakang2 = angle_depanBelakang;
+  }
+
+  if (kamera){
+    keyFunction('J', 0, 0);
+  }
+
+  sudut++;
+
+  glFlush();
+  glutSwapBuffers();
+}
+
 void displayTransmisi(){
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -479,64 +756,10 @@ void displayTransmisi(){
   glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
   glRotatef(view_rotasi_x, 1, 0, 0);
   glRotatef(view_rotasi_y, 0, 1, 0);
-  Matahari();
-  glPopMatrix();
-
-  // VENUS
-  glPushMatrix();
-  // glRotatef(sudut, 0, 0, 1);
-  glTranslatef(0.0f, -0.9f, -20.0f);
-  glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
-  glRotatef(view_rotasi_x, 1, 0, 0);
-  glRotatef(view_rotasi_y, 0, 1, 0);
+  Kotak();
   Transmisi();
-  glPopMatrix();
-
-  // BUMI
-  glPushMatrix();
-  // glRotatef(-sudut, 0, 0, 1);
-  glTranslatef(-1.0f, 5.0f, -15.0f);
-  glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
-  glRotatef(view_rotasi_x, 1, 0, 0);
-  glRotatef(view_rotasi_y, 0, 1, 0);
-  Bumi();
-  glPopMatrix();
-
-  // MARS
-  glPushMatrix();
-  // glRotatef(newSudut, 0, 0, 1);
-  glTranslatef(2.0f, 3.0f, -12.0f);
-  glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
-  glRotatef(view_rotasi_x, 1, 0, 0);
-  glRotatef(view_rotasi_y, 0, 1, 0);
-  Mars();
-  glPopMatrix();
-
-  // BULAN
-  glPushMatrix();
-  // glRotatef(-newSudut, 0, 0, 1);
-  glTranslatef(3.0f, 3.0f, -11.0f);
-  glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
-  glRotatef(view_rotasi_x, 1, 0, 0);
-  glRotatef(view_rotasi_y, 0, 1, 0);
-  Bulan();
-  glPopMatrix();
-
-  // PLUTO
-  glPushMatrix();
-  // glRotatef(-newSudut, 0, 0, 1);
-  glTranslatef(2.0f, -2.0f, -14.0f);
-  glRotatef(silinderAngle, 0.0f, 0.0f, -1.0f);
-  glRotatef(view_rotasi_x, 1, 0, 0);
-  glRotatef(view_rotasi_y, 0, 1, 0);
-  Pluto();
-  glPopMatrix();
-
-  // Bintang Kecil
-  glPushMatrix();
-  glTranslatef(1.0f, -1.0f, -14.0f);
-  BintangKecil();
-  glRotatef(silinderAngle, 0.0f, 0.0f, -1.0f);
+  Kotak();
+  Kotak();
   glPopMatrix();
 
   if (silinder){
@@ -547,7 +770,7 @@ void displayTransmisi(){
     angle_depanBelakang2 = angle_depanBelakang;
   }
 
-  if (kamera){
+  if (kamera) {
     keyFunction('J', 0, 0);
   }
 
@@ -569,7 +792,8 @@ int main(int argc, char **argv){
   glutInitWindowPosition(50, 50);
   glutCreateWindow("Project Grafis");
   // glutDisplayFunc(displayCapsul);
-  glutDisplayFunc(displayTransmisi);
+  // glutDisplayFunc(displayTransmisi);
+  glutDisplayFunc(displayPlanet);
   glutReshapeFunc(reshape);
   initGL();
   glutSpecialFunc(keyControl);
