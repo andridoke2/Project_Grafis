@@ -1,9 +1,3 @@
-/*
-  Nama : Andri Aryanto Doke
-  NRP  : 161111014
-  Project : Pemerograman Grafis
-*/
-
 #include <GL/glut.h>
 #include <math.h>
 
@@ -61,88 +55,6 @@ class Vector {
 };
 
 Vector depanBelakang, samping, vertikal;
-
-void Tabung(){
-  float amb[] = {0.34f, 1.34f, 0.34f, 1.0f};
-  float diff[] = {0.41f, 1.41f, 0.41f, 1.0f};
-  float spec[] = {0.11f, 1.11f, 0.11f, 1.0f};
-  float shine = 200.0f;
-
-  glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
-  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
-  glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
-  glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
-
-  float BODY_LENGTH = 5.0f;
-  float BODY_RADIUS = 2.0f;
-  int SLICES = 30;
-  int STACKS = 30;
-
-  GLUquadric *q= gluNewQuadric();
-  gluCylinder(q, BODY_RADIUS, BODY_RADIUS, BODY_LENGTH, SLICES, STACKS);
-  gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS);
-  glTranslatef(0.0f, 0.0f, BODY_LENGTH);
-  gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS);
-}
-
-void SetengahBola(){
-  float amb[] = {0.34f, 1.34f, 0.34f, 1.0f};
-  float diff[] = {0.41f, 1.41f, 0.41f, 1.0f};
-  float spec[] = {0.11f, 1.11f, 0.11f, 1.0f};
-  float shine = 50.0f;
-
-  glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
-  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
-  glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
-  glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
-
-  float BODY_RADIUS = 2.0f;
-  int SLICES = 50;
-  int STACKS = 50;
-  GLUquadric *q = gluNewQuadric();
-  gluSphere(q, BODY_RADIUS, SLICES, STACKS);
-}
-
-void Transmisi(){
-  float amb[] = {};
-  float diff[] = {};
-  float spec[] = {};
-  float shine = 50.0f;
-
-  // glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
-  // glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
-  // glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
-  glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
-
-  float BODY_RADIUS = 2.0f;
-  int SLICES = 50;
-  int STACKS = 50;
-  GLUquadric *q = gluNewQuadric();
-  gluSphere(q, BODY_RADIUS, SLICES, STACKS);
-}
-
-void Kotak(){
-  float amb[] = {0.34f, 1.34f, 0.34f, 1.0f};
-  float diff[] = {0.41f, 1.41f, 0.41f, 1.0f};
-  float spec[] = {0.11f, 1.11f, 0.11f, 1.0f};
-  float shine = 50.0f;
-
-  glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
-  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
-  glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
-  glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
-
-  float BODY_LENGTH = 2.0f;
-  float BODY_RADIUS = 1.0f;
-  int SLICES = 50;
-  int STACKS = 50;
-
-  GLUquadric *q= gluNewQuadric();
-  gluCylinder(q, BODY_RADIUS, BODY_RADIUS, BODY_LENGTH, SLICES, STACKS);
-  gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS);
-  glTranslatef(0.0f, 0.0f, BODY_LENGTH);
-  gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS);
-}
 
 void Matahari(){
   float amb[] = {1.34f, 1.34f, 0.34f, 0.0f};
@@ -551,39 +463,6 @@ void mouseMotion(int x, int y){
   view_rotasi_y += thetaY;
 }
 
-void displayCapsul(){
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-  // Reset the current matrix to the "identity"
-  glLoadIdentity();
-  
-  // Move the "drawing cursor" around
-  gluLookAt(
-    Cx, Cy, Cz,
-    Lx, Ly, Lz,
-    vertikal.x, vertikal.y, vertikal.z
-  );
-  
-  glPushMatrix();
-  glTranslatef(0.0f, 5.0f, -15.0f);
-  glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);  
-  SetengahBola();
-  Tabung();
-  SetengahBola();
-  glPopMatrix();
-
-  if (silinder) {
-    silinderAngle += 2.0f;
-  }
-
-  if (kamera) {
-    keyFunction('J', 0, 0);
-  }
-  
-  glFlush();
-  glutSwapBuffers();
-}
-
 float setSudut(float sudut){
   return sudut * (22 / 7) / 180;
 }
@@ -734,52 +613,6 @@ void displayPlanet(){
   glutSwapBuffers();
 }
 
-void displayTransmisi(){
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-  // Reset the current matrix to the "identity"
-  glLoadIdentity();
-
-  float newSudut = setSudut(sudut * 10);
-
-  // Move the "drawing cursor" around
-  gluLookAt(
-    Cx, Cy, Cz,
-    Lx, Ly, Lz,
-    vertikal.x, vertikal.y, vertikal.z
-  );
-
-  // MATAHARI
-  glPushMatrix();
-  // glRotatef(-newSudut, 0, 0, -1);
-  glTranslatef(0.0f, 2.5f, -10.0f);
-  glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
-  glRotatef(view_rotasi_x, 1, 0, 0);
-  glRotatef(view_rotasi_y, 0, 1, 0);
-  Kotak();
-  Transmisi();
-  Kotak();
-  Kotak();
-  glPopMatrix();
-
-  if (silinder){
-    silinderAngle += 2.0f;
-    angle_depanBelakang -= 0.7f;
-    samping.vectorRotation(depanBelakang, angle_depanBelakang - angle_depanBelakang2);
-    vertikal.vectorRotation(depanBelakang, angle_depanBelakang - angle_depanBelakang2);
-    angle_depanBelakang2 = angle_depanBelakang;
-  }
-
-  if (kamera) {
-    keyFunction('J', 0, 0);
-  }
-
-  sudut++;
-
-  glFlush();
-  glutSwapBuffers();
-}
-
 void timer(int value){
   glutPostRedisplay();
   glutTimerFunc(15, timer, 0);
@@ -791,8 +624,6 @@ int main(int argc, char **argv){
   glutInitWindowSize(2000, 700);
   glutInitWindowPosition(50, 50);
   glutCreateWindow("Project Grafis");
-  // glutDisplayFunc(displayCapsul);
-  // glutDisplayFunc(displayTransmisi);
   glutDisplayFunc(displayPlanet);
   glutReshapeFunc(reshape);
   initGL();
