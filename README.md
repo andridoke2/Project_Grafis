@@ -1,6 +1,6 @@
 # Project_Grafis
 
-    Topik         : Simulasi Transmisi
+    Topik         : Tata Surya
 
     Nama Kelompok : 
     
