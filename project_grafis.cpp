@@ -247,7 +247,7 @@ void Bulan(){
   glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
   glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
 
-  float BODY_RADIUS = 0.5; // ukuran gambar atau besar gambar
+  float BODY_RADIUS = 0.2; // ukuran gambar atau besar gambar
   int SLICES = 50;
   int STACKS = 50;
   GLUquadric *q = gluNewQuadric();
@@ -505,7 +505,7 @@ void displayPlanet(){
   // Venus
   glPushMatrix();
   // glRotatef(sudut, 0, 0, 1);
-  glTranslatef(1.0f, 0.02f, -15.0f);
+  glTranslatef(-4.0f, 0.02f, -15.0f);
   glRotatef(view_rotasi_x, 1, 0, 0);
   glRotatef(view_rotasi_y, 0, 1, 0);
   glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
@@ -515,11 +515,21 @@ void displayPlanet(){
   // Bumi
   glPushMatrix();
   // glRotatef(-sudut, 0, 0, 1);
-  glTranslatef(-1.0f, 0.20f, -11.0f);
+  glTranslatef(-0.10f, 0.10f, -11.0f);
   glRotatef(view_rotasi_x, 1, 0, 0);
   glRotatef(view_rotasi_y, 0, 1, 0);
   glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
   Bumi();
+  glPopMatrix();
+
+  // Bulan
+  glPushMatrix();
+  glRotatef(sudut, 0, 0, 1);
+  glTranslatef(-0.7f, -0.5f, -11.0f);
+  // glRotatef(view_rotasi_x, 1, 0, 0);
+  // glRotatef(view_rotasi_y, 0, 1, 0);
+  // glRotatef(silinderAngle, 0.0f, 0.0f, -1.0f);
+  Bulan();
   glPopMatrix();
 
   // Mars
@@ -581,19 +591,6 @@ void displayPlanet(){
   glRotatef(silinderAngle, 0.0f, 0.0f, -1.0f);
   Pluto();
   glPopMatrix();
-
-  // // Bintang Kecil
-  // for(int a = 0; a < 100; a++){
-  //   glPushMatrix();
-  // }
-  // for (int x = -3; x <= 3; x += 6) {
-	// 	for (int z = -20; z >= -25; z -= 4) {
-	// 		glTranslatef(x, -2, z);
-	// 		glRotatef(90, 1, 0, 0);
-  //     BintangKecil();
-	// 		glPopMatrix();
-	// 	}
-	// }
 
   if (silinder){
     silinderAngle += 2.0f;
