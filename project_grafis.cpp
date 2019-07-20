@@ -1,5 +1,6 @@
 #include <GL/glut.h>
 #include <math.h>
+#define PI 3.14159265
 
 int oldMouseX, oldMouseY;
 float view_rotasi_x = 20.0f, view_rotasi_y = 30.0f;
@@ -55,6 +56,27 @@ class Vector {
 };
 
 Vector depanBelakang, samping, vertikal;
+
+float degreeToRadian(float degree){
+  return (degree * PI) / 180.0;
+}
+
+void segiBeraturan(float r, int segi, float sudutAwal) {
+  float besarSudutRad = degreeToRadian(360.0 / segi);
+  float sudutAwalRad = degreeToRadian(sudutAwal);
+  glBegin(GL_LINES);
+  for (int titikKe = 0; titikKe < segi; titikKe ++) {
+    float sudut1 = besarSudutRad * titikKe + sudutAwalRad;
+    float sudut2 = besarSudutRad * (titikKe + 1) + sudutAwalRad;
+    float x1 = cos(sudut1) * r;
+    float x2 = cos(sudut2) * r;
+    float y1 = sin(sudut1) * r;
+    float y2 = sin(sudut2) * r;
+    glVertex3f(x1, y1, 0);
+    glVertex3f(x2, y2, 0);
+  }
+  glEnd();
+}
 
 void Matahari(){
   float amb[] = {1.34f, 1.34f, 0.34f, 0.0f};
@@ -112,7 +134,7 @@ void Venus(){
 
 void Bumi(){
   float amb[] = {0.0f, 0.45f, 0.45f, 1.40f};
-  float diff[] = {0.30f, 0.30f, 0.30f, 0.45f};
+  float diff[] = {0.30f, 0.30f, 0.30f, 0.30f};
   float spec[] = {0.0f, 0.0f, 0.0f, 0.0f};
   float shine = 50.0f;
 
@@ -184,7 +206,7 @@ void Saturnus(){
 
 void Uranus(){
   float amb[] = {0.34f, 0.34f, 0.34f, 0.0f};
-  float diff[] = {0.41f, 1.41f, 1.41f, 1.0f};
+  float diff[] = {1.0f, 1.0f, 1.0f, 1.0f};
   float spec[] = {0.11f, 0.11f, 0.11f, 0.0f};
   float shine = 50.0f;
 
@@ -202,7 +224,7 @@ void Uranus(){
 
 void Neptunus(){
   float amb[] = {0.34f, 0.34f, 0.34f, 0.0f};
-  float diff[] = {0.41f, 1.41f, 1.41f, 1.0f};
+  float diff[] = {0.61f, 1.61f, 1.61f, 1.60f};
   float spec[] = {0.11f, 0.11f, 0.11f, 0.0f};
   float shine = 50.0f;
 
@@ -516,9 +538,10 @@ void displayPlanet(){
   glPushMatrix();
   // glRotatef(-sudut, 0, 0, 1);
   glTranslatef(-0.10f, 0.10f, -11.0f);
-  glRotatef(view_rotasi_x, 1, 0, 0);
-  glRotatef(view_rotasi_y, 0, 1, 0);
-  glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
+  // glRotatef(view_rotasi_x, 1, 0, 0);
+  // glRotatef(view_rotasi_y, 0, 1, 0);
+  // glRotatef(silinderAngle, 0.0f, 0.0f, 1.0f);
+  segiBeraturan(0.9, 150, 90);
   Bumi();
   glPopMatrix();
 
@@ -540,6 +563,7 @@ void displayPlanet(){
   glRotatef(view_rotasi_y, 0, 1, 0);
   glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
   Mars();
+  segiBeraturan(0.5, 150, 90);
   glPopMatrix();
 
   // Yupiter
@@ -548,8 +572,9 @@ void displayPlanet(){
   glTranslatef(-2.0f, 6.0f, -14.0f);
   glRotatef(view_rotasi_x, 1, 0, 0);
   glRotatef(view_rotasi_y, 0, 1, 0);
-  glRotatef(silinderAngle, 0.0f, 0.0f, -1.0f);
+  glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
   Yupiter();
+  segiBeraturan(1.4, 150, 90);
   glPopMatrix();
 
   // Saturnus
