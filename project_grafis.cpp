@@ -583,8 +583,9 @@ void displayPlanet(){
   glTranslatef(-4.0f, -2.0f, -14.0f);
   glRotatef(view_rotasi_x, 1, 0, 0);
   glRotatef(view_rotasi_y, 0, 1, 0);
-  glRotatef(silinderAngle, 0.0f, 0.0f, -1.0f);
+  glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
   Saturnus();
+  segiBeraturan(1.0, 150, 90);
   glPopMatrix();
 
   // Uranus
